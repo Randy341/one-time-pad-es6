@@ -1,4 +1,4 @@
-## One-time-pad using modern ES6 implementation 
+## One-time-pad using modern ES6 implementation [![Build Status](https://travis-ci.com/Randy341/one-time-pad-es6.svg?branch=master)](https://travis-ci.com/Randy341/one-time-pad-es6)
 JavaScript Library to encrypt both Array Buffer and String using one-time-pad encryption 
 technique.  
 At the time of writing, this is the only one-time-pad implementation on NPM that supports encryption of both string and Array Buffer.  
