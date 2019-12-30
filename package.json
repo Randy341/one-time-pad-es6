@@ -1,6 +1,6 @@
 {
   "name": "one-time-pad-es6",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "One-time-pad implementation using ES6.  Encrypts both String and Array Buffer.",
   "main": "src/main.js",
   "scripts": {
