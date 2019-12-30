@@ -1,12 +1,13 @@
 const ab2b64 = require("ab2b64");
 
 class OneTimePad {
-    #key = null;
 
     constructor(key, options=null) {
         //helper functions to convert Array Buffer to String and vice versa, for encrypting and decrypting string
         this.ab2str = this.ab2str.bind(this);
         this.str2ab = this.str2ab.bind(this);
+
+        this.key = null;
 
         //Main encryption function
         this.pad = this.pad.bind(this);
@@ -17,9 +18,9 @@ class OneTimePad {
 
         //Accept key as both string and array buffer
         if(typeof(key) == 'string') {
-            this.#key = this.str2ab(key);
+            this.key = this.str2ab(key);
         } else if(key instanceof ArrayBuffer) {
-            this.#key = key;
+            this.key = key;
         } else {
             throw new Error("key has to be either string or ArrayBuffer");
         }
@@ -33,10 +34,10 @@ class OneTimePad {
     //step is the number of characters in the key to step through for each character at plaintext
     pad(payloadBuffer, offset=0, step=1) {
         return new Promise((resolve, reject) => {
-            if(payloadBuffer.byteLength > (this.#key.byteLength * step + offset)) {
+            if(payloadBuffer.byteLength > (this.key.byteLength * step + offset)) {
                 reject("Text size is bigger than usable key size!  Key size has to be equal or greater than (Text size * step + offset)")
             } else {
-                let keyView = new Uint8Array(this.#key);
+                let keyView = new Uint8Array(this.key);
                 let textView = new Uint8Array(payloadBuffer);
                 let encodedBuffer = new ArrayBuffer(payloadBuffer.byteLength);
                 let encodedView = new Uint8Array(encodedBuffer);
